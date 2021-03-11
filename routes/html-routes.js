@@ -5,23 +5,18 @@ const path = require('path');
 module.exports = (app) => {
   // Each of the below routes just handles the HTML page that the user gets sent to.
 
-  // index route loads view.html
+  // index route loads index.html
   app.get('/', (req, res) =>
-    res.sendFile(path.join(__dirname, '../public/blog.html'))
+    res.sendFile(path.join(__dirname, '../public/index.html'))
   );
 
-  // cms route loads cms.html
-  app.get('/cms', (req, res) =>
-    res.sendFile(path.join(__dirname, '../public/cms.html'))
+  // cms route loads exercise.html
+  app.get('/exercise', (req, res) =>
+    res.sendFile(path.join(__dirname, '../public/exercise.html'))
   );
 
-  // blog route loads blog.html
-  app.get('/blog', (req, res) =>
-    res.sendFile(path.join(__dirname, '../public/blog.html'))
-  );
-
-  // authors route loads author-manager.html
-  app.get('/authors', (req, res) =>
-    res.sendFile(path.join(__dirname, '../public/author-manager.html'))
+  // authors route loads stats.html
+  app.get('/stats', (req, res) =>
+    res.sendFile(path.join(__dirname, '../public/stats.html'))
   );
 };
