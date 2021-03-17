@@ -1,31 +1,30 @@
-const router = require("express").Router();
-const Transaction = require("../models/transaction.js");
+ const router = require("express").Router();
+const db = require("../models");
 
-router.post("/api/transaction", ({ body }, res) => {
-  Transaction.create(body)
-    .then(dbTransaction => {
-      res.json(dbTransaction);
+router.get("/api/workouts", (req, res) => {
+  db.Workout.find({})
+    .then(data => {
+      res.json(data);
     })
     .catch(err => {
       res.status(400).json(err);
     });
 });
 
-router.post("/api/transaction/bulk", ({ body }, res) => {
-  Transaction.insertMany(body)
-    .then(dbTransaction => {
-      res.json(dbTransaction);
+router.post("/api/workouts", ({ body }, res) => {
+  db.Workout.create(body)
+    .then(data => {
+      res.json(data);
     })
     .catch(err => {
       res.status(400).json(err);
     });
 });
 
-router.get("/api/transaction", (req, res) => {
-  Transaction.find({})
-    .sort({ date: -1 })
-    .then(dbTransaction => {
-      res.json(dbTransaction);
+router.post("/api/workouts/bulk", ({ body }, res) => {
+  db.Workout.insertMany(body)
+    .then(data => {
+      res.json(data);
     })
     .catch(err => {
       res.status(400).json(err);
