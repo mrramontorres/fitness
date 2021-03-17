@@ -36,4 +36,18 @@ module.exports = (app) => {
         });
     });
 
+    app.put("/api/workouts/:id", ({body,params}, res) => {
+        db.findByIdAndUpdate(  
+            params.id,
+            {$push:{exercises:body} },
+            {new: true,runValidators:true }
+           )
+            .then(data => {
+            res.json(data);
+            })
+            .catch(err => {
+            res.status(400).json(err);
+            });
+        });
+
 };
