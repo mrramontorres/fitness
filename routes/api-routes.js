@@ -16,7 +16,7 @@ module.exports = (app) => {
 
     // This will create the workouts
     app.post("/api/workouts", ({ body }, res) => {
-        console.log("post in 18 here");
+        console.log("post in here");
     db.create(body)
         .then(data => {
         res.json(data);
@@ -26,8 +26,10 @@ module.exports = (app) => {
         });
     });
 
-    app.post("/api/workouts/bulk", ({ body }, res) => {
-    db.insertMany(body)
+    // This will populate the workouts for the dashboard
+    app.get("/api/workouts/range", ({ body }, res) => {
+        console.log("post in here");
+    db.find({})
         .then(data => {
         res.json(data);
         })
