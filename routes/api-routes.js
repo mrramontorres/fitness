@@ -3,7 +3,7 @@ const db = require("../models/workout.js");
 
 module.exports = (app) => {
 
-    // This will get the workouts
+    // This will find the workouts
     app.get("/api/workouts", (req, res) => {
     db.find({})
         .then(data => {
@@ -25,7 +25,7 @@ module.exports = (app) => {
         });
     });
 
-    // This will populate the workouts for the dashboard
+    // This will find the workouts for the dashboard
     app.get("/api/workouts/range", ({ body }, res) => {
     db.find({})
         .then(data => {
@@ -36,7 +36,19 @@ module.exports = (app) => {
         });
     });
 
+    // This will find the workouts for the dashboard
+    app.post("/api/workouts/range", (req, res) => {
+        db.find({})
+            .then(data => {
+            res.json(data);
+            })
+            .catch(err => {
+            res.status(400).json(err);
+            });
+        });
+
     app.put("/api/workouts/:id", ({body,params}, res) => {
+        console.log(body);
         db.findByIdAndUpdate(  
             params.id,
             {$push:{exercises:body} },
@@ -49,5 +61,4 @@ module.exports = (app) => {
             res.status(400).json(err);
             });
         });
-
 };
