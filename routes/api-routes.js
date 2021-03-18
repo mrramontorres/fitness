@@ -16,7 +16,7 @@ module.exports = (app) => {
 
     // This will create the workouts
     app.post("/api/workouts", ({ body }, res) => {
-    db.create(body)
+    db.create({})
         .then(data => {
         res.json(data);
         })
